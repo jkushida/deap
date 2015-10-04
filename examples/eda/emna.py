@@ -68,7 +68,7 @@ def main():
     strategy = EMNA(centroid=[5.0]*N, sigma=5.0, mu=MU, lambda_=LAMBDA)
     
     toolbox = base.Toolbox()
-    toolbox.register("evaluate", benchmarks.sphere)
+    toolbox.register("evaluate", benchmarks.rosenbrock)
     toolbox.register("generate", strategy.generate, creator.Individual)
     toolbox.register("update", strategy.update)
     
@@ -83,7 +83,7 @@ def main():
     stats.register("min", numpy.min)
     stats.register("max", numpy.max)
     
-    algorithms.eaGenerateUpdate(toolbox, ngen=150, stats=stats, halloffame=hof)
+    algorithms.eaGenerateUpdate(toolbox, ngen=250, stats=stats, halloffame=hof)
     
     return hof[0].fitness.values[0]
 
