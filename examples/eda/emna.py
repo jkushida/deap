@@ -83,7 +83,7 @@ def main():
     stats.register("min", numpy.min)
     stats.register("max", numpy.max)
     
-    algorithms.eaGenerateUpdate(toolbox, ngen=250, stats=stats, halloffame=hof)
+    algorithms.eaGenerateUpdate(toolbox, ngen=150, stats=stats, halloffame=hof)
     
     return hof[0].fitness.values[0]
 
