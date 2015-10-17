@@ -19,11 +19,13 @@ import numpy
 
 from operator import attrgetter
 
-from deap import algorithms
+import algorithms
 from deap import base
 from deap import benchmarks
 from deap import creator
 from deap import tools
+
+
 
 creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
 creator.create("Individual", numpy.ndarray, fitness=creator.FitnessMin) 
@@ -83,7 +85,7 @@ def main():
     stats.register("min", numpy.min)
     stats.register("max", numpy.max)
     
-    algorithms.eaGenerateUpdate(toolbox, ngen=150, stats=stats, halloffame=hof)
+    algorithms.eaGenerateUpdate(toolbox, ngen=100, stats=stats, halloffame=hof)
     
     return hof[0].fitness.values[0]
 

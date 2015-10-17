@@ -26,6 +26,8 @@ from deap import benchmarks
 from deap import creator
 from deap import tools
 
+reload(benchmarks)
+
 # Problem dimension
 NDIM = 10
 
@@ -63,7 +65,7 @@ toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 toolbox.register("mutate", mutDE, f=0.8)
 toolbox.register("mate", cxExponential, cr=0.8)
 toolbox.register("select", tools.selRandom, k=3)
-toolbox.register("evaluate", benchmarks.griewank)
+toolbox.register("evaluate", benchmarks.rastrigin)
 
 def main():
     # Differential evolution parameters

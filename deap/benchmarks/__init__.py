@@ -235,7 +235,9 @@ def rastrigin(individual):
 
     .. plot:: code/benchmarks/rastrigin.py
        :width: 67 %
-    """     
+    """
+    
+    print 'rasreigin'
     return 10 * len(individual) + sum(gene * gene - 10 * \
                         cos(2 * pi * gene) for gene in individual),
 
@@ -249,6 +251,52 @@ def rastrigin_scaled(individual):
     N = len(individual)
     return 10*N + sum((10**(i/(N-1))*x)**2 - 
                       10*cos(2*pi*10**(i/(N-1))*x) for i, x in enumerate(individual)),
+
+
+
+def rastrigin2(individual):
+    """Rastrigin test objective function.
+        .. list-table::
+        :widths: 10 50
+        :stub-columns: 1
+        * - Type
+        - minimization
+        * - Range
+        - :math:`x_i \in [-5.12, 5.12]`
+        * - Global optima
+        - :math:`x_i = 0, \\forall i \in \\lbrace 1 \\ldots N\\rbrace`, :math:`f(\mathbf{x}) = 0`
+        * - Function
+        - :math:`f(\\mathbf{x}) = 10N + \sum_{i=1}^N x_i^2 - 10 \\cos(2\\pi x_i)`
+        .. plot:: code/benchmarks/rastrigin.py
+        :width: 67 %
+        """
+    
+    beta=0.0
+    
+    individual2=individual
+    individual3=[]
+    
+    
+    print "len",len(individual2)
+    for x in range(len(individual2)):
+        #   print x,individual[x]
+        if individual2[x] > 0:
+            y=pow(individual2[x],1+beta*(x+1-1)/(len(individual2)-1)*sqrt(individual2[x]))
+        else:
+            y=individual2[x];
+        
+        individual3.insert(x,y)
+    
+    print "ind " ,individual
+    print "ind3" ,individual3
+    print ""
+    
+
+    return 10 * len(individual3) + sum(x * x - 10 * cos(2 * pi * x) for x in individual3),
+
+#return 10 * len(individual) + sum(gene * gene - 10 * cos(2 * pi * gene) for gene in individual),
+
+
 
 def rastrigin_skew(individual):
     """Skewed Rastrigin test objective function.
