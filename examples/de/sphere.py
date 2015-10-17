@@ -110,7 +110,7 @@ def main():
         
         hof.update(pop)
         record = stats.compile(pop)
-        logbook.record(gen=g, evals=len(pop), **record)
+        logbook.record(gen=g, evals=len(pop)*g, **record)
         print(logbook.stream)
     
     print("Best individual is ", hof[0])
